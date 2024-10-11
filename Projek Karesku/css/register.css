@@ -1,0 +1,92 @@
+/* Gaya Umum */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #dadada;
+}
+
+/* Container untuk Register */
+.register-container {
+    width: 320px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Gaya Logo dan Judul */
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-icon {
+    width: 40px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #7e2f30;
+    margin-bottom: 20px;
+}
+
+/* Input dan Button */
+.input-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.show-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.register-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffb565;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.register-button:hover {
+    background-color: #b38564;
+}

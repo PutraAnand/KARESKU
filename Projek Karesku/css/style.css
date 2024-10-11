@@ -1,0 +1,95 @@
+/* Gaya Umum */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f2f0f0;
+}
+
+
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	background-color: #f0a561;
+	position: relative;
+}
+
+/* Bagian kiri: Logo dan search bar */
+.left-section {
+	display: flex;
+	align-items: center;
+}
+
+/* Atur ukuran logo dan jarak antar elemen */
+.logo img {
+	height: 70px; /* Sesuaikan ukuran */
+	margin-right: 25px; /* Jarak antara logo dan search bar */
+}
+
+/* Gaya untuk search bar */
+.search-bar {
+	width: 200px;
+	padding: 8px;
+	border: none;
+	border-radius: 5px;
+}
+
+/* Gaya untuk tombol login */
+.btn_login {
+	color: #000;
+	text-decoration: none;
+	font-weight: bold;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+}
+.login-button:hover {
+    background-color: #ffb565;
+}
+
+/* Banner */
+.banner img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+/* Info Section */
+.info-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #ffb565;
+    margin-bottom: 20px;
+}
+
+.info-card {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    max-width: 60%;
+}
+
+.info-card h2 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.info-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+.info-image img {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
+}

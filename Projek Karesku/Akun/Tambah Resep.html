@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="assets/Logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tambah Resep - Karesku</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #ffb565;
+            color: #fff;
+            height: 100vh;
+            position: fixed;
+            transition: width 0.3s;
+            overflow: hidden;
+        }
+
+        .sidebar .logo-details {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            font-size: 24px;
+            color: #ffffff;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 10px 0;
+        }
+
+        .sidebar ul li {
+            padding: 15px 20px;
+            color: #ffffff;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .content h1 {
+            font-size: 32px;
+            color: #333;
+        }
+
+        .add-recipe-container {
+            margin-top: 20px;
+        }
+
+        .add-recipe-container input[type="text"],
+        .add-recipe-container textarea {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .add-recipe-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #ffb565;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-recipe-container button:hover {
+            background-color: #ff6347;
+        }
+
+        .recipe-list {
+            margin-top: 20px;
+        }
+
+        .recipe-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .recipe-list li {
+            padding: 15px;
+            background-color: #fff;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 18px;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .recipe-list li .recipe-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 5px;
+        }
+
+        .recipe-list li button {
+            padding: 5px 10px;
+            font-size: 14px;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .edit-btn {
+            background-color: #4CAF50;
+        }
+
+        .edit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .delete-btn {
+            background-color: #ff4d4d;
+        }
+
+        .delete-btn:hover {
+            background-color: #ff1a1a;
+        }
+
+        .save-btn {
+            background-color: #008CBA;
+        }
+
+        .save-btn:hover {
+            background-color: #007B9E;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <i class="bx bx-restaurant"></i>
+            <span class="logo_name">Karesku</span>
+        </div>
+        <ul>
+            <li><a href="#">Beranda</a></li>
+            <li><a href="Resep Disimpan.html">Resep Disimpan</a></li>
+            <li><a href="Tambah Resep.html" class="active">Tambahkan Resep</a></li>
+            <li><a href="Notifikasi.html">Notifikasi</a></li>
+            <li><a href="#">Keluar</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1>Tambahkan Resep</h1>
+        <div class="add-recipe-container">
+            <input type="text" id="recipeTitle" placeholder="Judul Makanan" />
+            <textarea id="recipeIngredients" rows="3" placeholder="Bahan-Bahan"></textarea>
+            <textarea id="recipeInstructions" rows="5" placeholder="Cara Pembuatan"></textarea>
+            <button onclick="addRecipe()">Tambah Resep</button>
+            <button class="save-btn" onclick="saveRecipes()">Simpan Resep</button>
+        </div>
+        <div class="recipe-list">
+            <h2>Daftar Resep</h2>
+            <ul id="recipeList">
+                <!-- Resep akan ditambahkan di sini -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Memuat resep yang disimpan saat halaman dimuat
+        window.onload = function() {
+            loadRecipes();
+        };
+
+        function loadRecipes() {
+            const recipes = JSON.parse(localStorage.getItem("recipes")) || [];
+            recipes.forEach(recipe => {
+                addRecipeToList(recipe.title, recipe.ingredients, recipe.instructions);
+            });
+        }
+
+        function addRecipe() {
+            let title = document.getElementById("recipeTitle").value;
+            let ingredients = document.getElementById("recipeIngredients").value;
+            let instructions = document.getElementById("recipeInstructions").value;
+
+            if (title && ingredients && instructions) {
+                addRecipeToList(title, ingredients, instructions);
+
+                // Bersihkan input setelah menambah
+                document.getElementById("recipeTitle").value = "";
+                document.getElementById("recipeIngredients").value = "";
+                document.getElementById("recipeInstructions").value = "";
+            } else {
+                alert("Silakan lengkapi semua field.");
+            }
+        }
+
+        function addRecipeToList(title, ingredients, instructions) {
+            let listItem = document.createElement("li");
+
+            // Tampilkan judul resep
+            let recipeTitle = document.createElement("h3");
+            recipeTitle.textContent = title;
+            listItem.appendChild(recipeTitle);
+
+            // Tampilkan bahan-bahan
+            let recipeIngredients = document.createElement("p");
+            recipeIngredients.textContent = "Bahan-Bahan: " + ingredients;
+            listItem.appendChild(recipeIngredients);
+
+            // Tampilkan cara pembuatan
+            let recipeInstructions = document.createElement("p");
+            recipeInstructions.textContent = "Cara Pembuatan: " + instructions;
+            listItem.appendChild(recipeInstructions);
+
+            // Tombol Edit dan Hapus
+            let actions = document.createElement("div");
+            actions.className = "recipe-actions";
+
+            let editButton = document.createElement("button");
+            editButton.textContent = "Edit";
+            editButton.className = "edit-btn";
+            editButton.onclick = function () {
+                editRecipe(recipeTitle, recipeIngredients, recipeInstructions);
+            };
+            actions.appendChild(editButton);
+
+            let deleteButton = document.createElement("button");
+            deleteButton.textContent = "Hapus";
+            deleteButton.className = "delete-btn";
+            deleteButton.onclick = function () {
+                listItem.remove();
+                removeRecipeFromStorage(title); // Menghapus dari localStorage
+            };
+            actions.appendChild(deleteButton);
+
+            listItem.appendChild(actions);
+            document.getElementById("recipeList").appendChild(listItem);
+            
+            // Simpan resep ke localStorage
+            saveRecipeToStorage(title, ingredients, instructions);
+        }
+
+        function saveRecipeToStorage(title, ingredients, instructions) {
+            const recipes = JSON.parse(localStorage.getItem("recipes")) || [];
+            recipes.push({ title, ingredients, instructions });
+            localStorage.setItem("recipes", JSON.stringify(recipes));
+        }
+
+        function removeRecipeFromStorage(title) {
+            let recipes = JSON.parse(localStorage.getItem("recipes")) || [];
+            recipes = recipes.filter(recipe => recipe.title !== title);
+            localStorage.setItem("recipes", JSON.stringify(recipes));
+        }
+
+        function saveRecipes() {
+            alert("Resep telah disimpan!");
+        }
+
+        function editRecipe(titleElem, ingredientsElem, instructionsElem) {
+            let newTitle = prompt("Edit Judul Makanan:", titleElem.textContent);
+            let newIngredients = prompt("Edit Bahan-Bahan:", ingredientsElem.textContent.replace("Bahan-Bahan: ", ""));
+            let newInstructions = prompt("Edit Cara Pembuatan:", instructionsElem.textContent.replace("Cara Pembuatan: ", ""));
+
+            if (newTitle) {
+                removeRecipeFromStorage(titleElem.textContent); // Menghapus resep lama
+                titleElem.textContent = newTitle;
+            }
+            if (newIngredients) {
+                ingredientsElem.textContent = "Bahan-Bahan: " + newIngredients;
+            }
+            if (newInstructions) {
+                instructionsElem.textContent = "Cara Pembuatan: " + newInstructions;
+            }
+
+            // Simpan resep yang diperbarui ke localStorage
+            saveRecipeToStorage(titleElem.textContent, ingredientsElem.textContent.replace("Bahan-Bahan: ", ""), instructionsElem.textContent.replace("Cara Pembuatan: ", ""));
+        }
+    </script>
+</body>
+</html>
