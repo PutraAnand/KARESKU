@@ -4,27 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beranda - Karesku</title>
-	<link rel="icon" href="assets/Logo.png" />
+    <link rel="icon" href="assets/Logo.png" />
     <link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
     <header>
-		<header>
-	<nav class="navbar">
-		<div class="logo">
-			<div class="left-section">
-			<div class="logo">
-				<img src="asset/Logo.png" alt="Logo" class="logo-icon">
-			</div>
-			<input type="text" placeholder="Search" class="search-bar" />
-		</div>
-		<a href="Karesku Login.html" class="btn_login">Login</a>
-		</div>
-	</nav>
-</header>
-
+        <nav class="navbar">
+            <div class="left-section">
+                <div class="logo">
+                    <img src="asset/Logo.png" alt="Logo" class="logo-icon">
+                </div>
+                <input type="text" placeholder="Search" class="search-bar" />
+            </div>
+            <ul>
+                <li><a href="Karesku Login.html" id="loginLink" class="btn_login">Login</a></li>
+                <li><a href="Karesku Register.html" id="registerLink">Register</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
@@ -52,5 +50,26 @@
             </div>
         </section>
     </main>
+
+    <!-- JavaScript untuk interaksi DOM -->
+    <script>
+        // Ambil elemen berdasarkan id
+        const loginLink = document.getElementById('loginLink');
+        const registerLink = document.getElementById('registerLink');
+  
+        // Tambahkan event listener untuk klik pada link Login
+        loginLink.addEventListener('click', function(event) {
+          event.preventDefault(); // Menghentikan aksi default link
+          alert('Anda akan diarahkan ke halaman Login');
+          window.location.href = 'Karesku Login.html'; // Arahkan pengguna ke halaman Login
+        });
+  
+        // Tambahkan event listener untuk klik pada link Register
+        registerLink.addEventListener('click', function(event) {
+          event.preventDefault(); // Menghentikan aksi default link
+          alert('Anda akan diarahkan ke halaman Register');
+          window.location.href = 'Karesku Register.html'; // Arahkan pengguna ke halaman Register
+        });
+    </script>
 </body>
 </html>
