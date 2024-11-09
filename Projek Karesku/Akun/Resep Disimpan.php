@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="assets/Logo.png" />
+    <link rel= "stylesheet" href="css/resepsimpan.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Resep Disimpan - Karesku</title>
-    <link rel= "stylesheet" href="Akun/css/resepsimpan.css" />
-    
+
 </head>
 <body>
     <div class="sidebar">
@@ -15,10 +15,9 @@
             <span class="logo_name">Karesku</span>
         </div>
         <ul>
-            <li><a href="#">Beranda</a></li>
+            <li><a href="Projek Karesku/Karesku Akun.php">Beranda</a></li>
             <li><a href="Resep Disimpan.php" class="active">Resep Disimpan</a></li>
             <li><a href="Tambah Resep.php">Tambahkan Resep</a></li>
-            <li><a href="Projek Kares/Karesku Akun.php">Beranda</a></li>
             <li><a href="#">Keluar</a></li>
         </ul>
     </div>

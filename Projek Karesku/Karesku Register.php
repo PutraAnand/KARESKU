@@ -54,11 +54,11 @@
             </div>
             <div class="input-container">
                 <input type="password" placeholder="Password" required>
-                <span class="show-password">👁️</span>
+                <span class="show-password">show</span>
             </div>
             <div class="input-container">
                 <input type="password" placeholder="Konfirmasi password" required>
-                <span class="show-password">👁️</span>
+                <span class="show-password">show</span>
             </div>
             <button type="submit" class="register-button">Create Account</button>
         </form>
