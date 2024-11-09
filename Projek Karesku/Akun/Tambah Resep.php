@@ -17,7 +17,6 @@
             <li><a href="#">Beranda</a></li>
             <li><a href="Resep Disimpan.php">Resep Disimpan</a></li>
             <li><a href="Tambah Resep.php" class="active">Tambahkan Resep</a></li>
-            <li><a href="Notifikasi.php">Notifikasi</a></li>
             <li><a href="#">Keluar</a></li>
         </ul>
     </div>

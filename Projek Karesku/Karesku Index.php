@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beranda - Karesku</title>
     <link rel="icon" href="assets/Logo.png" />
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
     <header>
         <nav class="navbar">
             <div class="left-section">
-                <div class="logo">
-                    <img src="asset/Logo.png" alt="Logo" class="logo-icon">
-                </div>
-                <input type="text" placeholder="Search" class="search-bar" />
+                <img src="asset/Logo.png" alt="Karesku Logo" class="logo-icon">
             </div>
-            <div class="auth-buttons">
-                <a href="Karesku Login.php" id="loginLink" class="btn_login">Login</a>
-                <a href="Karesku Register.php" id="registerLink">Register</a>
+        <input type="text" placeholder="Search" class="search-bar">
+            <div class="right-section">
+                <a href="Karesku Login.php" class="btn_login">Log In</a>
+                <a href="Karesku Register.php" class="btn_register">Register</a>
             </div>
         </nav>
     </header>
@@ -48,8 +48,6 @@
             </div>
         </section>
     </main>
-</body>
-</html>
 
     <!-- JavaScript untuk interaksi DOM -->
     <script>

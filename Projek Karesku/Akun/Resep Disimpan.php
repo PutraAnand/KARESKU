@@ -5,7 +5,8 @@
     <link rel="icon" href="assets/Logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Resep Disimpan - Karesku</title>
-    <link rel="stylesheet" href="css/resepsimpan.css">
+    <link rel= "stylesheet" href="Akun/css/resepsimpan.css" />
+    
 </head>
 <body>
     <div class="sidebar">
@@ -17,7 +18,7 @@
             <li><a href="#">Beranda</a></li>
             <li><a href="Resep Disimpan.php" class="active">Resep Disimpan</a></li>
             <li><a href="Tambah Resep.php">Tambahkan Resep</a></li>
-            <li><a href="Notifikasi.php">Notifikasi</a></li>
+            <li><a href="Projek Kares/Karesku Akun.php">Beranda</a></li>
             <li><a href="#">Keluar</a></li>
         </ul>
     </div>
@@ -83,3 +84,4 @@
     </script>
 </body>
 </html>
+ 

@@ -55,7 +55,7 @@
             </div>
             <div class="input-container">
                 <input type="password" placeholder="Kata Sandi" required>
-                <span class="show-password">👁️</span>
+                <span class="show-password">show</span>
             </div>
             <button type="submit" class="login-button">Log In</button>
         </form>
