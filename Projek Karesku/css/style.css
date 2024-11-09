@@ -1,4 +1,4 @@
-/* Gaya Umum */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
@@ -8,49 +8,111 @@
 
 body {
     background-color: #f2f0f0;
+    display: flex;
 }
 
-
-.navbar {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px 20px;
-	background-color: #f0a561;
-	position: relative;
-}
-
-/* Bagian kiri: Logo dan search bar */
-.left-section {
-	display: flex;
-	align-items: center;
-}
-
-/* Atur ukuran logo dan jarak antar elemen */
-.logo img {
-	height: 70px; /* Sesuaikan ukuran */
-	margin-right: 25px; /* Jarak antara logo dan search bar */
-}
-
-/* Gaya untuk search bar */
-.search-bar {
-	width: 200px;
-	padding: 8px;
-	border: none;
-	border-radius: 5px;
-}
-
-/* Gaya untuk tombol login */
-.btn_login {
-	color: #000;
-	text-decoration: none;
-	font-weight: bold;
-	position: absolute;
-	right: 20px;
-	top: 20px;
-}
-.login-button:hover {
+/* Sidebar styling */
+.sidebar {
+    width: 250px;
     background-color: #ffb565;
+    color: #fff;
+    height: 100vh;
+    position: fixed;
+    transition: width 0.3s;
+    overflow: hidden;
+}
+
+.sidebar.active {
+    width: 80px;
+}
+
+.logo-details {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    font-size: 24px;
+    color: #ffffff;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 10px 0;
+}
+
+.nav-links li {
+    padding: 15px 20px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.nav-links li:hover {
+    background-color: #575757;
+}
+
+/* Navbar styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f0a561;
+    position: relative;
+    margin-left: 250px;
+    transition: margin-left 0.3s;
+}
+
+/* Left section: Logo and search bar */
+.left-section {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 70px;
+    margin-right: 25px;
+}
+
+.search-bar {
+    width: 200px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Style untuk tombol login dan register */
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn_login,
+#registerLink {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.btn_login:hover,
+#registerLink:hover {
+    background-color: #ffb565;
+    color: #333;
+}
+
+/* Home Section */
+.home-section {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.home-content h1 {
+    font-size: 32px;
+    color: #333;
 }
 
 /* Banner */
@@ -83,13 +145,47 @@ body {
     margin-bottom: 10px;
 }
 
-.info-card p {
-    font-size: 14px;
-    color: #555;
-}
-
 .info-image img {
     width: 150px;
     height: auto;
     border-radius: 10px;
+}
+
+/* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 10px;
+        margin-left: 0;
+    }
+
+    .auth-buttons {
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .left-section {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .search-bar {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .info-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .info-card {
+        max-width: 100%;
+    }
+
+    .info-image img {
+        width: 100px;
+    }
 }
