@@ -1,36 +1,27 @@
 <?php
-include '../db.php'; // Make sure this points to your database connection file
+include '../db.php'; // Pastikan jalur ini benar
 
-session_start(); // Start the session for CSRF token
+session_start(); // Memulai session
 
-// Generate a CSRF token if it doesn't exist
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+// Memeriksa apakah pengguna sudah login
+if (!isset($_SESSION['user_id'])) {
+    header('Location: ../login.php'); // Redirect ke halaman login jika belum login
+    exit();
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validate CSRF token
-    if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
-        die('Invalid CSRF token');
-    }
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $judul = $_POST['judul'];
+    $bahan = $_POST['bahan'];
+    $langkah = $_POST['langkah'];
+    $user_id = $_SESSION['user_id']; // Mendapatkan ID pengguna dari session
 
-    // Sanitize user input
-    $judul = htmlspecialchars(trim($_POST['judul']));
-    $bahan = htmlspecialchars(trim($_POST['bahan']));
-    $langkah = htmlspecialchars(trim($_POST['langkah']));
-
-    try {
-        // Save recipe to the database
-        $sql = "INSERT INTO resep (judul, bahan, langkah) VALUES (:judul, :bahan, :langkah)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['judul' => $judul, 'bahan' => $bahan, 'langkah' => $langkah]);
-
-        // Redirect to the recipe list page after successful insert
-        header("Location: SimpanResep.php");
-        exit;
-    } catch (PDOException $e) {
-        // Handle error (you can log this error or show a user-friendly message)
-        echo "Error: " . $e->getMessage();
+    // Menyimpan resep baru ke database
+    $stmt = $pdo->prepare("INSERT INTO resep (judul, bahan, langkah, user_id) VALUES (?, ?, ?, ?)");
+    if ($stmt->execute([$judul, $bahan, $langkah, $user_id])) {
+        header('Location: SimpanResep.php'); // Redirect setelah berhasil
+        exit();
+    } else {
+        $error = "Gagal menyimpan resep, silakan coba lagi.";
     }
 }
 ?>
@@ -51,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <span class="logo_name">Karesku</span>
         </div>
         <ul>
-            <li><a href="akun.php">Beranda</a></li>
+            <li><a href="/resep/akun.php">Beranda</a></li>
             <li><a href="SimpanResep.php">Resep Disimpan</a></li>
             <li><a href="TambahResep.php" class="active">Tambahkan Resep</a></li>
             <li><a href="#">Keluar</a></li>
@@ -61,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="content">
         <h1>Tambahkan Resep</h1>
         <form method="POST" action="TambahResep.php">
-            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>" />
+            <input type="hiddenluname="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>" />
             <div class="add-recipe-container">
                 <input type="text" name="judul" id="recipeTitle" placeholder="Judul" required />
                 <textarea name="bahan" id="recipeIngredients" rows="3" placeholder="Bahan" required></textarea>

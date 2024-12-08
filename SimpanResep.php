@@ -24,7 +24,7 @@ $resepList = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <span class="logo_name">Karesku</span>
         </div>
         <ul>
-            <li><a href="akun.php">Beranda</a></li>
+            <li><a href="/resep/akun.php">Beranda</a></li>
             <li><a href="SimpanResep.php" class="active">Resep Disimpan</a></li>
             <li><a href="TambahResep.php">Tambahkan Resep</a></li>
             <li><a href="#">Keluar</a></li>
